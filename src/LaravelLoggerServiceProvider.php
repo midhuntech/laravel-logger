@@ -6,6 +6,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use midhuntech\LaravelLogger\App\Http\Middleware\LogActivity;
+use Illuminate\Support\Facades\Config;
 
 class LaravelLoggerServiceProvider extends ServiceProvider
 {
@@ -73,7 +74,7 @@ class LaravelLoggerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (file_exists(config_path('laravel-logger.php'))) {
+        if (file_exists(Config::get('view.compiled'))) {
             $this->mergeConfigFrom(config_path('laravel-logger.php'), 'LaravelLogger');
         } else {
             $this->mergeConfigFrom(__DIR__.'/config/laravel-logger.php', 'LaravelLogger');
