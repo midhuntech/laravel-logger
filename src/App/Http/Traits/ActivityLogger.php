@@ -19,7 +19,7 @@ trait ActivityLogger
      *
      * @return void
      */
-    public static function activity($description = null, $details = null)
+    public static function activity($description = null, $details = null, $inputRequest = null, $outputData = null)
     {
         $userType = trans('LaravelLogger::laravel-logger.userTypes.guest');
         $userId = null;
@@ -71,6 +71,8 @@ trait ActivityLogger
             'details'       => $details,
             'userType'      => $userType,
             'userId'        => $userId,
+            'input_request' => $inputRequest,
+            'output_data'   => $outputData,
             'route'         => Request::fullUrl(),
             'ipAddress'     => Request::ip(),
             'userAgent'     => Request::header('user-agent'),
@@ -105,6 +107,8 @@ trait ActivityLogger
             'details'       => $data['details'],
             'userType'      => $data['userType'],
             'userId'        => $data['userId'],
+            'input_request' => $data['input_request'] ?? null,
+            'output_data'=> $data['output_data'] ?? null,
             'route'         => $data['route'],
             'ipAddress'     => $data['ipAddress'],
             'userAgent'     => $data['userAgent'],

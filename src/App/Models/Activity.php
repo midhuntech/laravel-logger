@@ -66,6 +66,8 @@ class Activity extends Model
         'locale',
         'referer',
         'methodType',
+        'input_request',
+        'output_data',
     ];
 
     protected $casts = [
@@ -78,6 +80,8 @@ class Activity extends Model
         'locale'        => 'string',
         'referer'       => 'string',
         'methodType'    => 'string',
+        'input_request'    => 'array',
+        'output_data'    => 'array',
     ];
 
     /**
