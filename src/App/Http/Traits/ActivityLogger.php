@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect as Crawler;
+use App\Helpers\GlobalUserHelper;
 
 trait ActivityLogger
 {
@@ -23,11 +24,16 @@ trait ActivityLogger
         $userType = trans('LaravelLogger::laravel-logger.userTypes.guest');
         $userId = null;
 
-        if (Auth::check()) {
+        $user = GlobalUserHelper::user();
+        if($user) {
             $userType = trans('LaravelLogger::laravel-logger.userTypes.registered');
-            $userIdField = config('LaravelLogger.defaultUserIDField');
-            $userId = Request::user()->{$userIdField};
+            $userId = $user['id'] ?? null;
         }
+        // if (Auth::check()) {
+        //     $userType = trans('LaravelLogger::laravel-logger.userTypes.registered');
+        //     $userIdField = config('LaravelLogger.defaultUserIDField');
+        //     $userId = Request::user()->{$userIdField};
+        // }
 
         if (Crawler::isCrawler()) {
             $userType = trans('LaravelLogger::laravel-logger.userTypes.crawler');
