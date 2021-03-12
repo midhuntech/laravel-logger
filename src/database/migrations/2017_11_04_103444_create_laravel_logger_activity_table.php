@@ -24,6 +24,8 @@ class CreateLaravelLoggerActivityTable extends Migration
                 $table->increments('id');
                 $table->longText('description');
                 $table->longText('details')->nullable();
+                $table->json('input_request')->nullable();
+                $table->json('output_data')->nullable();
                 $table->string('userType');
                 $table->string('userId')->nullable();
                 $table->longText('route')->nullable();
