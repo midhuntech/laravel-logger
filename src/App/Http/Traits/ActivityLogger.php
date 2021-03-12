@@ -82,15 +82,15 @@ trait ActivityLogger
         ];
 
         // Validation Instance
-        $validator = Validator::make($data, config('laravel-logger.defaultActivityModel')::rules());
-        if ($validator->fails()) {
-            $errors = self::prepareErrorMessage($validator->errors(), $data);
-            if (config('LaravelLogger.logDBActivityLogFailuresToFile')) {
-                Log::error('Failed to record activity event. Failed Validation: '.$errors);
-            }
-        } else {
+        // $validator = Validator::make($data, config('laravel-logger.defaultActivityModel')::rules());
+        // if ($validator->fails()) {
+        //     $errors = self::prepareErrorMessage($validator->errors(), $data);
+        //     if (config('LaravelLogger.logDBActivityLogFailuresToFile')) {
+        //         Log::error('Failed to record activity event. Failed Validation: '.$errors);
+        //     }
+        // } else {
             self::storeActivity($data);
-        }
+        // }
     }
 
     /**
