@@ -52,7 +52,7 @@ class LaravelLoggerController extends BaseController
             $collectionItem['timePassed'] = $eventTime->diffForHumans();
             $collectionItem['userAgentDetails'] = UserAgentDetails::details($collectionItem->userAgent);
             $collectionItem['langDetails'] = UserAgentDetails::localeLang($collectionItem->locale);
-            $collectionItem['userDetails'] = config('LaravelLogger.defaultUserModel')::find($collectionItem->userId);
+            $collectionItem['userDetails'] = [];
 
             return $collectionItem;
         });
@@ -86,7 +86,7 @@ class LaravelLoggerController extends BaseController
 
         self::mapAdditionalDetails($activities);
 
-        $users = config('LaravelLogger.defaultUserModel')::all();
+        $users = [];
 
         $data = [
             'activities'        => $activities,
