@@ -71,7 +71,7 @@ trait ActivityLogger
             'details'       => $details,
             'userType'      => $userType,
             'userId'        => $userId,
-            'input_request' => $inputRequest,
+            'input_request' => $inputRequest ?? Request::all(),
             'output_data'   => $outputData,
             'route'         => Request::fullUrl(),
             'ipAddress'     => Request::ip(),
