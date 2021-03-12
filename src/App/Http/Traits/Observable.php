@@ -73,7 +73,7 @@ trait Observable
      * @return string
      */
     public static function logChange( Model $model, string $action ) {
-        ActivityLogger::activity(json_encode($model->getAttributes()),null,$model->getOriginal(),$model->getChanges());
+        ActivityLogger::activity(get_class($model).' '.$action,json_encode($model->getAttributes()),$model->getOriginal(),$model->getChanges());
     }
 
 }
