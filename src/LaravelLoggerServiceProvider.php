@@ -74,11 +74,11 @@ class LaravelLoggerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (file_exists(Config::get('view.compiled'))) {
-            $this->mergeConfigFrom(config_path('laravel-logger.php'), 'LaravelLogger');
-        } else {
+        // if (file_exists(Config::get('laravel-loggers'))) {
+        //     $this->mergeConfigFrom(Config::get('laravel-logger'), 'LaravelLogger');
+        // } else {
             $this->mergeConfigFrom(__DIR__.'/config/laravel-logger.php', 'LaravelLogger');
-        }
+        // }
 
         if (config(self::DISABLE_DEFAULT_ROUTES_CONFIG) == false) {
             $this->loadRoutesFrom(__DIR__.'/routes/web.php');
