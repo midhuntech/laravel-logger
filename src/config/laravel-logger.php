@@ -27,6 +27,7 @@ return [
     */
 
     'loggerMiddlewareEnabled'   => env('LARAVEL_LOGGER_MIDDLEWARE_ENABLED', true),
+    'loggerUserLimitEnabled'   => env('LARAVEL_LOGGER_USER_LIMIT_ENABLED', true),
     'loggerMiddlewareExcept'    => array_filter(explode(',', trim(env('LARAVEL_LOGGER_MIDDLEWARE_EXCEPT')))),
 
     /*
