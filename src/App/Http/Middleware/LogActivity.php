@@ -5,6 +5,7 @@ namespace midhuntech\LaravelLogger\App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use midhuntech\LaravelLogger\App\Http\Traits\ActivityLogger;
+use midhuntech\LaravelLogger\App\Http\Traits\UserActionLimit;
 
 class LogActivity
 {
@@ -22,6 +23,12 @@ class LogActivity
     {
         if (config('LaravelLogger.loggerMiddlewareEnabled') && $this->shouldLog($request)) {
             ActivityLogger::activity($description);
+        }
+        if(config('LaravelLogger.loggerUserLimitEnabled')) {
+            $response = UserActionLimit::checkActionLimit();
+            if(!$response) {
+                return response('Unauthorized.', 401);
+            }
         }
 
         return $next($request);
