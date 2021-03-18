@@ -37,10 +37,10 @@ trait UserActionLimit
                     return false;
                 }
             } else {
-                return false;
+                return true;
             }
         }
-        return false;
+        return true;
     }
     public static function getActivity() {
         $routePath = Request::path();
